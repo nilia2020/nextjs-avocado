@@ -1,12 +1,26 @@
-import Navbar from "../components/Navbar/Navbar";
+import { useState, useEffect } from 'react'
 
 const Home = () => {
+  const [productList, setProductList] = useState<TProduct[]>([])
+  useEffect(() => {
+    window
+      .fetch('/api/avo')
+      .then((res) => res.json())
+      .then(({ data, length }) => setProductList(data))
+      .catch((err) => console.log(err))
+  }, [])
+
   return (
     <div>
-      <Navbar />
-      <p>Esto es Home</p>
+      <p>Avocado</p>
+      {productList.map((product, key) => (
+        <div key={key}>
+          <h3>{product.name}</h3>
+          <p>Price: {product.price} USD</p>
+        </div>
+      ))}
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
