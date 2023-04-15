@@ -1,4 +1,6 @@
 import Navbar from '@components/Navbar'
+import Footer from '@components/Footer/Footer'
+import { Container } from 'semantic-ui-react'
 import { ReactNode } from 'react'
 
 interface Props {
@@ -7,18 +9,13 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div>
+    <>
       <Navbar />
-      {children}
-      <footer>This is the footer</footer>
-      <style jsx>
-        {`
-          div {
-            background-color: rgb(188, 251, 231);
-          }
-        `}
-      </style>
-    </div>
+      <Container as="main" text>
+        {children}
+      </Container>
+      <Footer />
+    </>
   )
 }
 
